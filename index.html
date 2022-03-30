@@ -27,18 +27,18 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col col-md-3">
+            <div class="col col-md-3 p-3 border bg-light">
                 <!-- Search bar on left side -->
                 <h1>Search For a City:</h1>
                 <!-- Input Form -->
+                <div class="form-floating mb-3">
+                    <input type="city" class="form-control" id="searchCity" placeholder="City">
+                    <label for="floatingInput"></label>
+                  </div>
                 <hr>
                 <!-- Favorites List -->
                 <div class="col-md-3" id="Favorites"> 
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
+                    
 
                 </div>
                 
@@ -47,15 +47,37 @@
 
             <div class="col col-md-9">
                 <!-- Current Day report -->
-                <div class="container-fluid">
+                <div class="container-fluid p-3 border bg-light">
                     <h1>Current Day Forcast</h1>  
+                    <div class="container-fluid" id="CurrentDaysWeather"></div>
                 </div>
 
                 <br>
 
                  <!-- Next 5 days Report -->
-                <div class="container">
+                <div class="container-fluid p-3 border bg-light">
                     <h1>5-Day Forcast:</h1>
+                    <div class="container px-4">
+                        <div class="row gx-5">
+                          <div class="col">
+                           <div class="p-3 border bg-light"> Day 1</div>
+                          </div>
+                          <div class="col">
+                            <div class="p-3 border bg-light"> Day2</div>
+                          </div>
+                          <div class="col">
+                            <div class="p-3 border bg-light"> Day 3</div>
+                          </div>
+                          <div class="col">
+                            <div class="p-3 border bg-light"> Day 4</div>
+                          </div>
+                          <div class="col">
+                            <div class="p-3 border bg-light"> Day 5</div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
                 </div>
             </div>
         </div>
