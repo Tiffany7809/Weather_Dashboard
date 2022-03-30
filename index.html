@@ -48,9 +48,17 @@
 
             <div class="col col-md-9">
                 <!-- Current Day report -->
-                <div class="container-fluid p-3 border bg-light">
-                    <h1>Current Day Forcast</h1>  
-                    <div class="container-fluid" id="CurrentDaysWeather"></div>
+                <div class="container-fluid p-3 border bg-light">  
+                    <div class="container-fluid" id="CurrentDaysWeather">
+                        <div class="card-body">
+                            <h3 id="cityName" class="city-name align-middle"></h3>
+                            <img id="current" alt="">
+                            <p id="temperature"></p>
+                            <p id="humidity"></p>
+                            <p id="windSpeed"></p>
+                            <p id="uvIndex"></p>
+                        </div>
+                    </div>
                 </div>
 
                     <br>
@@ -61,19 +69,19 @@
                     <div class="container px-4">
                         <div class="row gx-5">
                           <div class="col">
-                            <div class="p-3 border bg-light"> Day 1</div>
+                            <div class="p-3 border bg-light Forcast"> Day 1</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light"> Day2</div>
+                            <div class="p-3 border bg-light Forcast"> Day2</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light"> Day 3</div>
+                            <div class="p-3 border bg-light Forcast"> Day 3</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light"> Day 4</div>
+                            <div class="p-3 border bg-light Forcast"> Day 4</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light"> Day 5</div>
+                            <div class="p-3 border bg-light Forcast"> Day 5</div>
                           </div>
                         </div>
                       </div>
