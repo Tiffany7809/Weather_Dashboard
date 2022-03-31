@@ -52,6 +52,7 @@
                     <div class="container-fluid" id="CurrentDaysWeather">
                         <div class="card-body">
                             <h3 id="cityName" class="city-name align-middle"></h3>
+                            <p id ="currentDate"></p>
                             <img id="current" alt="">
                             <p id="temperature"></p>
                             <p id="humidity"></p>
@@ -69,19 +70,19 @@
                     <div class="container px-4">
                         <div class="row gx-5">
                           <div class="col">
-                            <div class="p-3 border bg-light Forcast"> Day 1</div>
+                            <div class="p-3 border Forcast" id="Day1"> Day 1</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light Forcast"> Day2</div>
+                            <div class="p-3 border Forcast" id="Day2"> Day2</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light Forcast"> Day 3</div>
+                            <div class="p-3 border Forcast" id="Day3"> Day 3</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light Forcast"> Day 4</div>
+                            <div class="p-3 border Forcast" id="Day4"> Day 4</div>
                           </div>
                           <div class="col">
-                            <div class="p-3 border bg-light Forcast"> Day 5</div>
+                            <div class="p-3 border Forcast" id="Day5"> Day 5</div>
                           </div>
                         </div>
                       </div>
@@ -107,7 +108,9 @@
 
 
 <!-- linking JS file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./script.js"></script>
+    
 </body>
 
 
