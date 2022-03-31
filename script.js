@@ -144,7 +144,13 @@ function getApi(WeatherURL) {
       
   }
 
+  getApi(WeatherURL)
 
-
+  var cityLonLat = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid=fac969b25d4eb179bf7de6d01c2e017f'
 //listening for click on search button
-submitSearchBtn.addEventListener('click', getApi(WeatherURL));
+
+
+submitSearchBtn.addEventListener('click', function(){
+  preventDefault();
+  console.log(inputEl)
+});

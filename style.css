@@ -13,6 +13,7 @@ h1 {
 }
 
 .Forcast {
+    text-align: left;
     background-color: black;
     color: white;
 }
