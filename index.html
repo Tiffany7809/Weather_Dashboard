@@ -11,12 +11,15 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
         crossorigin="anonymous">
 
+    
+
     <!-- linking font awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Teko:wght@300;400&display=swap" rel="stylesheet">
     <!-- Favicon  -->
     <link rel="icon" type="image/x-icon" href="">
+
 
     <title>Weather Dashboard</title>
 </head>
@@ -48,7 +51,7 @@
 
             <div class="col col-md-9">
                 <!-- Current Day report -->
-                <div class="container-fluid p-3 border bg-light">  
+                <div class="container-fluid p-3 border Forcast">  
                     <div class="container-fluid" id="CurrentDaysWeather">
                         <div class="card-body">
                             <h3 id="cityName" class="city-name align-middle"></h3>
@@ -107,8 +110,9 @@
 
 
 
-<!-- linking JS file -->
+    <!-- linking moment JS  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- linking JS file -->
     <script src="./script.js"></script>
     
 </body>

@@ -1,18 +1,43 @@
 favoritesEl=document.getElementById("Favorites");
-inputEl=document.getElementById("serchCity");
+inputEl=document.getElementById("searchCity");
 currentDayEl=document.getElementById("CurrentDaysWeather");
-cityEl=document.getElementById("cityName")
-tempEl=document.getElementById("temperature")
-humidityEl=document.getElementById("humidity")
-windEl=document.getElementById("windSpeed")
-UvEl=document.getElementById("uvIndex")
+cityEl=document.getElementById("cityName");
+tempEl=document.getElementById("temperature");
+humidityEl=document.getElementById("humidity");
+windEl=document.getElementById("windSpeed");
+UvEl=document.getElementById("uvIndex");
 submitSearchBtn=document.getElementById("submitBtn");
-Today=document.getElementById("currentDate")
-Day1=document.getElementById("Day1")
-Day2=document.getElementById("Day2")
-Day3=document.getElementById("Day3")
-Day4=document.getElementById("Day4")
-Day5=document.getElementById("Day5")
+Today=document.getElementById("currentDate");
+Day1=document.getElementById("Day1");
+Day2=document.getElementById("Day2");
+Day3=document.getElementById("Day3");
+Day4=document.getElementById("Day4");
+Day5=document.getElementById("Day5");
+
+
+
+var cityURL = 'https://api.openweathermap.org/data/2.5/weather?q=seattle&appid=fac969b25d4eb179bf7de6d01c2e017f'
+submitSearchBtn.addEventListener("click",function(){
+  getApi(cityURL)
+  var qparam = inputEl.value
+  inputEl.value= " "
+  console.log(qparam)
+
+
+})
+
+function getApi(cityURL) {
+ 
+  fetch(cityURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
+
+    });
+};
+
 
 
 //request data from oneweather API
@@ -27,10 +52,7 @@ function getApi(WeatherURL) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
-        console.log(data.current.humidity)
-        console.log(data.current.uvi)
-        console.log(data.current.temp)
+        console.log(data)
         console.log(data.current.wind_speed)
 
         cityEl.textContent=data.timezone;
@@ -40,7 +62,7 @@ function getApi(WeatherURL) {
         UvEl.textContent="UV Index:" + " " + data.current.uvi;
         humidityEl.textContent="Humidity" + " " + data.current.humidity;
 
-        function ForcastDay1 (){
+        function Forcast(){
           //day 1 forcast
           forcast1=document.createElement("p");
           Wind1=document.createElement("p");
@@ -139,18 +161,12 @@ function getApi(WeatherURL) {
 
 
         }
-          ForcastDay1()
+          Forcast()
       });
       
   }
-
+ 
   getApi(WeatherURL)
 
-  var cityLonLat = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid=fac969b25d4eb179bf7de6d01c2e017f'
-//listening for click on search button
+  
 
-
-submitSearchBtn.addEventListener('click', function(){
-  preventDefault();
-  console.log(inputEl)
-});
