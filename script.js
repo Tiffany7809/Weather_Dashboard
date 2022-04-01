@@ -16,12 +16,18 @@ Day5=document.getElementById("Day5");
 
 
 
-var cityURL = 'https://api.openweathermap.org/data/2.5/weather?q=seattle&appid=fac969b25d4eb179bf7de6d01c2e017f'
+var cityURL = 'https://api.openweathermap.org/data/2.5/weather?q=burien&appid=fac969b25d4eb179bf7de6d01c2e017f'
 submitSearchBtn.addEventListener("click",function(){
   getApi(cityURL)
   var qparam = inputEl.value
   inputEl.value= " "
   console.log(qparam)
+  localStorage.setItem("Recent" , qparam)
+  var RecentSearch=localStorage.getItem('Recent')
+
+  favoritesEl.append(RecentSearch)
+
+  
 
 
 })
