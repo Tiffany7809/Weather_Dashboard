@@ -34,14 +34,15 @@
                 <!-- Search bar on left side -->
                 <h1>Search For a City:</h1>
                 <!-- Input Form -->
+                <form method="GET">
                 <div class="form-floating mb-3">
-                    <input type="city" class="form-control" id="searchCity" placeholder="City">
+                    <input type="city" class="form-control" id="citySearch" placeholder="City" name="citySearch">
                     <label for="floatingInput"></label>
                 </div>
                 <div class="d-grid gap-2 col-12 mx-auto">
                     <button class="btn btn-primary" type="button" id="submitBtn">Search</button>
                 </div>
-
+             </form>
                 <hr>
 
                 <!-- Favorites List -->
@@ -108,8 +109,11 @@
 
     
 
+    <!-- linking JQuerey -->
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
     <!-- linking moment JS  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- linking JS file -->

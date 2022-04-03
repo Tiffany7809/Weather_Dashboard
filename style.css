@@ -17,3 +17,21 @@ h1 {
     background-color: black;
     color: white;
 }
+
+#Favorites {
+    font-size: 40px;
+    font-family: Teko;
+}
+
+
+.safe {
+    background-color: rgb(38, 255, 38);
+}
+
+.danger {
+    background-color: red;
+}
+
+.moderate {
+    background-color: orange;
+}
