@@ -56,7 +56,7 @@ function getApi(cityURL) {
 
 
 //request data from oneweather API
-var WeatherURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=47.37&lon=122.20&appid=fac969b25d4eb179bf7de6d01c2e017f'
+var WeatherURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=47.37&lon=122.20&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f'
 function getApi(WeatherURL) {
     fetch(WeatherURL)
       .then(function (response) {
@@ -73,7 +73,7 @@ function getApi(WeatherURL) {
         cityEl.textContent=data.timezone;
         Today.textContent = moment().format("MM Do, YYYY")
         windEl.textContent="Wind Speed:" + " " + data.current.wind_speed;
-        tempEl.textContent="Temp:" + " " + data.current.temp;
+        tempEl.textContent="Temp:" + " " + data.current.temp + "°" + "F";
         UvEl.textContent="UV Index:" + " " + data.current.uvi;
         humidityEl.textContent="Humidity" + " " + data.current.humidity;
 
@@ -102,7 +102,7 @@ function getApi(WeatherURL) {
 
           forcast1.textContent=moment().add(1, "days").format("MM Do, YYYY");
           Wind1.textContent="Wind Speed:" + " " + data.daily[0].wind_speed;
-          Temp1.textContent="Temp:" + " " + data.daily[0].temp;
+          Temp1.textContent="Temp:" + " " + data.daily[0].temp.day + "°" + "F";
           UV1.textContent="UV Index:" + " " + data.daily[0].uvi;
           Humidity1.textContent="Humidity" + " " + data.daily[0].humidity;
 
@@ -129,7 +129,7 @@ function getApi(WeatherURL) {
 
           forcast2.textContent=moment().add(2, "days").format("MM Do, YYYY");
           Wind2.textContent="Wind Speed:" + " " + data.daily[1].wind_speed;
-          Temp2.textContent="Temp:" + " " + data.daily[1].temp;
+          Temp2.textContent="Temp:" + " " + data.daily[1].temp.day + "°" + "F";
           UV2.textContent="UV Index:" + " " + data.daily[1].uvi;
           Humidity2.textContent="Humidity" + " " + data.daily[1].humidity;
 
@@ -156,7 +156,7 @@ function getApi(WeatherURL) {
 
           forcast3.textContent=moment().add(3, "days").format("MM Do, YYYY");
           Wind3.textContent="Wind Speed:" + " " + data.daily[2].wind_speed;
-          Temp3.textContent="Temp:" + " " + data.daily[2].temp;
+          Temp3.textContent="Temp:" + " " + data.daily[2].temp.day + "°" + "F";
           UV3.textContent="UV Index:" + " " + data.daily[2].uvi;
           Humidity3.textContent="Humidity" + " " + data.daily[2].humidity;
 
@@ -183,7 +183,7 @@ function getApi(WeatherURL) {
 
           forcast4.textContent=moment().add(4, "days").format("MM Do, YYYY");
           Wind4.textContent="Wind Speed:" + " " + data.daily[3].wind_speed;
-          Temp4.textContent="Temp:" + " " + data.daily[3].temp;
+          Temp4.textContent="Temp:" + " " + data.daily[3].temp.day + "°" + "F";
           UV4.textContent="UV Index:" + " " + data.daily[3].uvi;
           Humidity4.textContent="Humidity" + " " + data.daily[3].humidity;
 
@@ -211,7 +211,7 @@ function getApi(WeatherURL) {
 
           forcast5.textContent=moment().add(5, "days").format("MM Do, YYYY");
           Wind5.textContent="Wind Speed:" + " " + data.daily[4].wind_speed;
-          Temp5.textContent="Temp:" + " " + data.daily[4].temp;
+          Temp5.textContent="Temp:" + " " + data.daily[4].temp.day + "°" + "F";
           UV5.textContent="UV Index:" + " " + data.daily[4].uvi;
           Humidity5.textContent="Humidity" + " " + data.daily[4].humidity;
 
