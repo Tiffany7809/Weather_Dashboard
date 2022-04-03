@@ -73,10 +73,10 @@ function getApi(WeatherURL) {
 
         cityEl.textContent=data.timezone;
         Today.textContent = moment().format("(M/D/YY)")
-        windEl.textContent="Wind Speed:" + " " + data.current.wind_speed;
+        windEl.textContent="Wind Speed:" + " " + data.current.wind_speed + "MPH";
         tempEl.textContent="Temp:" + " " + data.current.temp + "°" + "F";
         UvEl.textContent="UV Index:" + " " + data.current.uvi;
-        humidityEl.textContent="Humidity" + " " + data.current.humidity;
+        humidityEl.textContent="Humidity" + " " + data.current.humidity + "%";
 
         
 
@@ -130,10 +130,10 @@ function getApi(WeatherURL) {
 
 
           forcast1.textContent=moment().add(1, "days").format("(M/D/YY)");
-          Wind1.textContent="Wind Speed:" + " " + data.daily[0].wind_speed;
+          Wind1.textContent="Wind Speed:" + " " + data.daily[0].wind_speed + "MPH";
           Temp1.textContent="Temp:" + " " + data.daily[0].temp.day + "°" + "F";
           UV1.textContent="UV Index:" + " " + data.daily[0].uvi;
-          Humidity1.textContent="Humidity" + " " + data.daily[0].humidity;
+          Humidity1.textContent="Humidity" + " " + data.daily[0].humidity + "%";
 
           Day1.append(forcast1)
           Day1.append(current1)
@@ -184,10 +184,10 @@ function getApi(WeatherURL) {
           Humidity2=document.createElement("p");
 
           forcast2.textContent=moment().add(2, "days").format("(M/D/YY)");
-          Wind2.textContent="Wind Speed:" + " " + data.daily[1].wind_speed;
+          Wind2.textContent="Wind Speed:" + " " + data.daily[1].wind_speed + "MPH";
           Temp2.textContent="Temp:" + " " + data.daily[1].temp.day + "°" + "F";
           UV2.textContent="UV Index:" + " " + data.daily[1].uvi;
-          Humidity2.textContent="Humidity" + " " + data.daily[1].humidity;
+          Humidity2.textContent="Humidity" + " " + data.daily[1].humidity + "%";
 
           Day2.append(forcast2)
           Day2.append(current2)
@@ -238,10 +238,10 @@ function getApi(WeatherURL) {
           Humidity3=document.createElement("p");
 
           forcast3.textContent=moment().add(3, "days").format("(M/D/YY)");
-          Wind3.textContent="Wind Speed:" + " " + data.daily[2].wind_speed;
+          Wind3.textContent="Wind Speed:" + " " + data.daily[2].wind_speed + "MPH";
           Temp3.textContent="Temp:" + " " + data.daily[2].temp.day + "°" + "F";
           UV3.textContent="UV Index:" + " " + data.daily[2].uvi;
-          Humidity3.textContent="Humidity" + " " + data.daily[2].humidity;
+          Humidity3.textContent="Humidity" + " " + data.daily[2].humidity + "%";
 
           Day3.append(forcast3)
           Day3.append(current3)
@@ -293,10 +293,10 @@ function getApi(WeatherURL) {
           Humidity4=document.createElement("p");
 
           forcast4.textContent=moment().add(4, "days").format("(M/D/YY)");
-          Wind4.textContent="Wind Speed:" + " " + data.daily[3].wind_speed;
+          Wind4.textContent="Wind Speed:" + " " + data.daily[3].wind_speed + "MPH";
           Temp4.textContent="Temp:" + " " + data.daily[3].temp.day + "°" + "F";
           UV4.textContent="UV Index:" + " " + data.daily[3].uvi;
-          Humidity4.textContent="Humidity" + " " + data.daily[3].humidity;
+          Humidity4.textContent="Humidity" + " " + data.daily[3].humidity + "%";
 
           Day4.append(forcast4)
           Day4.append(current4)
@@ -349,10 +349,10 @@ function getApi(WeatherURL) {
           Humidity5=document.createElement("p");
 
           forcast5.textContent=moment().add(5, "days").format("(M/D/YY)");
-          Wind5.textContent="Wind Speed:" + " " + data.daily[4].wind_speed;
+          Wind5.textContent="Wind Speed:" + " " + data.daily[4].wind_speed + "MPH";
           Temp5.textContent="Temp:" + " " + data.daily[4].temp.day + "°" + "F";
           UV5.textContent="UV Index:" + " " + data.daily[4].uvi;
-          Humidity5.textContent="Humidity" + " " + data.daily[4].humidity;
+          Humidity5.textContent="Humidity" + " " + data.daily[4].humidity + "%";
 
           Day5.append(forcast5)
           Day5.append(current5)
