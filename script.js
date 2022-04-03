@@ -57,7 +57,7 @@ function getApi(cityURL) {
 
 
 //request data from oneweather API
-var WeatherURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=47.37&lon=122.20&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f'
+var WeatherURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=47.6062&lon=-122.3321&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f'
 function getApi(WeatherURL) {
     fetch(WeatherURL)
       .then(function (response) {
