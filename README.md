@@ -12,6 +12,7 @@ I gained the beginnings of an understanding of media queries.
 
 
 
+![Screenshot (13)](https://user-images.githubusercontent.com/97773921/161413856-f68cb49a-f648-483f-b784-b613f70c98d5.png)
 
 
 https://tiffany7809.github.io/Weather_Dashboard/
