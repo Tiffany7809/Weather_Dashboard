@@ -13,6 +13,7 @@ Day2=document.getElementById("Day2");
 Day3=document.getElementById("Day3");
 Day4=document.getElementById("Day4");
 Day5=document.getElementById("Day5");
+imageEl=document.getElementById("current")
 
 localStorage.setItem("favoritesList", favoritesEl);
 
@@ -93,12 +94,38 @@ function getApi(WeatherURL) {
             UvEl.setAttribute("class", "moderate")
           }
 
+          if(data.current.weather[0].description === "clear sky"){
+            console.log("CLEAR")
+            imageEl.textContent = "🌞"
+          } else if (data.current.weather[0].description === "overcast clouds") {
+            imageEl.textContent = "☁️"
+          } else if (data.current.weather[0].description === "few clouds") {
+            imageEl.textContent="🌤"
+          }else if (data.current.weather[0].description === "scattered clouds") {
+            imageEl.textContent = "☁️"
+          }else if (data.current.weather[0].description === "broken clouds") {
+            imageEl.textContent="🌤"
+          }else if (data.current.weather[0].description === "shower rain") {
+            imageEl.textContent="🌧"
+          }else if (data.current.weather[0].description === "rain") {
+            imageEl.textContent="🌧"
+          }else if (data.current.weather[0].description === "thunderstorm") {
+            imageEl.textContent="⛈"
+          }else if (data.current.weather[0].description === "snow"){
+            imageEl.textContent="🌨"
+          }else {
+            imageEl.textContent="🌫"
+          };
+
+
           //day 1 forcast
+          current1=document.createElement("p");
           forcast1=document.createElement("p");
           Wind1=document.createElement("p");
           Temp1=document.createElement("p");
           UV1=document.createElement("p");
           Humidity1=document.createElement("p");
+
 
           forcast1.textContent=moment().add(1, "days").format("MM Do, YYYY");
           Wind1.textContent="Wind Speed:" + " " + data.daily[0].wind_speed;
@@ -107,6 +134,7 @@ function getApi(WeatherURL) {
           Humidity1.textContent="Humidity" + " " + data.daily[0].humidity;
 
           Day1.append(forcast1)
+          Day1.append(current1)
           Day1.append(Wind1)
           Day1.append(Temp1)
           Day1.append(UV1)
@@ -120,7 +148,32 @@ function getApi(WeatherURL) {
             UV1.setAttribute("class", "moderate")
           }
 
+
+          if(data.daily[0].weather[0].description === "clear sky"){
+            console.log("CLEAR")
+            current1.textContent = "🌞"
+          } else if (data.daily[0].weather[0].description === "overcast clouds") {
+            current1.textContent = "☁️"
+          } else if (data.daily[0].weather[0].description === "few clouds") {
+            current1.textContent="🌤"
+          }else if (data.daily[0].weather[0].description === "scattered clouds") {
+            current1.textContent = "☁️"
+          }else if (data.daily[0].weather[0].description === "broken clouds") {
+            current1.textContent="🌤"
+          }else if (data.daily[0].weather[0].description === "shower rain") {
+            current1.textContent="🌧"
+          }else if (data.daily[0].weather[0].description === "rain") {
+            current1.textContent="🌧"
+          }else if (data.daily[0].weather[0].description === "thunderstorm") {
+            current1.textContent="⛈"
+          }else if (data.daily[0].weather[0].description === "snow"){
+            current1.textContent="🌨"
+          }else {
+            current1.textContent="🌫"
+          };
+
           //day 2 forcast
+          current2=document.createElement("p");
           forcast2=document.createElement("p");
           Wind2=document.createElement("p");
           Temp2=document.createElement("p");
@@ -134,6 +187,7 @@ function getApi(WeatherURL) {
           Humidity2.textContent="Humidity" + " " + data.daily[1].humidity;
 
           Day2.append(forcast2)
+          Day2.append(current2)
           Day2.append(Wind2)
           Day2.append(Temp2)
           Day2.append(UV2)
@@ -147,7 +201,31 @@ function getApi(WeatherURL) {
             UV2.setAttribute("class", "moderate")
           }
 
+          if(data.daily[1].weather[0].description === "clear sky"){
+            console.log("CLEAR")
+            current2.textContent = "🌞"
+          } else if (data.daily[1].weather[0].description === "overcast clouds") {
+            current2.textContent = "☁️"
+          } else if (data.daily[1].weather[0].description === "few clouds") {
+            current2.textContent="🌤"
+          }else if (data.daily[1].weather[0].description === "scattered clouds") {
+            current2.textContent = "☁️"
+          }else if (data.daily[1].weather[0].description === "broken clouds") {
+            current2.textContent="🌤"
+          }else if (data.daily[1].weather[0].description === "shower rain") {
+            current2.textContent="🌧"
+          }else if (data.daily[1].weather[0].description === "rain") {
+            current2.textContent="🌧"
+          }else if (data.daily[1].weather[0].description === "thunderstorm") {
+            current2.textContent="⛈"
+          }else if (data.daily[1].weather[0].description === "snow"){
+            current2.textContent="🌨"
+          }else {
+            current2.textContent="🌫"
+          };
+
           //day 3 forcast
+          current3=document.createElement("p");
           forcast3=document.createElement("p");
           Wind3=document.createElement("p");
           Temp3=document.createElement("p");
@@ -161,6 +239,7 @@ function getApi(WeatherURL) {
           Humidity3.textContent="Humidity" + " " + data.daily[2].humidity;
 
           Day3.append(forcast3)
+          Day3.append(current3)
           Day3.append(Wind3)
           Day3.append(Temp3)
           Day3.append(UV3)
@@ -174,7 +253,31 @@ function getApi(WeatherURL) {
             UV3.setAttribute("class", "moderate")
           }
 
+          if(data.daily[2].weather[0].description === "clear sky"){
+            console.log("CLEAR")
+            current3.textContent = "🌞"
+          } else if (data.daily[2].weather[0].description === "overcast clouds") {
+            current3.textContent = "☁️"
+          } else if (data.daily[2].weather[0].description === "few clouds") {
+            current3.textContent="🌤"
+          }else if (data.daily[2].weather[0].description === "scattered clouds") {
+            current3.textContent = "☁️"
+          }else if (data.daily[2].weather[0].description === "broken clouds") {
+            current3.textContent="🌤"
+          }else if (data.daily[2].weather[0].description === "shower rain") {
+            current3.textContent="🌧"
+          }else if (data.daily[2].weather[0].description === "rain") {
+            current3.textContent="🌧"
+          }else if (data.daily[2].weather[0].description === "thunderstorm") {
+            current3.textContent="⛈"
+          }else if (data.daily[2].weather[0].description === "snow"){
+            current3.textContent="🌨"
+          }else {
+            current3.textContent="🌫"
+          };
+
           //day 4 forcast
+          current4=document.createElement("p");
           forcast4=document.createElement("p");
           Wind4=document.createElement("p");
           Temp4=document.createElement("p");
@@ -188,6 +291,7 @@ function getApi(WeatherURL) {
           Humidity4.textContent="Humidity" + " " + data.daily[3].humidity;
 
           Day4.append(forcast4)
+          Day4.append(current4)
           Day4.append(Wind4)
           Day4.append(Temp4)
           Day4.append(UV4)
@@ -201,9 +305,33 @@ function getApi(WeatherURL) {
             UV4.setAttribute("class", "moderate")
           }
 
+          if(data.daily[3].weather[0].description === "clear sky"){
+            console.log("CLEAR")
+            current4.textContent = "🌞"
+          } else if (data.daily[3].weather[0].description === "overcast clouds") {
+            current4.textContent = "☁️"
+          } else if (data.daily[3].weather[0].description === "few clouds") {
+            current4.textContent="🌤"
+          }else if (data.daily[3].weather[0].description === "scattered clouds") {
+            current4.textContent = "☁️"
+          }else if (data.daily[3].weather[0].description === "broken clouds") {
+            current4.textContent="🌤"
+          }else if (data.daily[3].weather[0].description === "shower rain") {
+            current4.textContent="🌧"
+          }else if (data.daily[3].weather[0].description === "rain") {
+            current4.textContent="🌧"
+          }else if (data.daily[3].weather[0].description === "thunderstorm") {
+            current4.textContent="⛈"
+          }else if (data.daily[3].weather[0].description === "snow"){
+            current4.textContent="🌨"
+          }else {
+            current4.textContent="🌫"
+          };
+
           //day 5 forcast
 
           forcast5=document.createElement("p");
+          current5=document.createElement("p");
           Wind5=document.createElement("p");
           Temp5=document.createElement("p");
           UV5=document.createElement("p");
@@ -216,6 +344,7 @@ function getApi(WeatherURL) {
           Humidity5.textContent="Humidity" + " " + data.daily[4].humidity;
 
           Day5.append(forcast5)
+          Day5.append(current5)
           Day5.append(Wind5)
           Day5.append(Temp5)
           Day5.append(UV5)
@@ -229,6 +358,29 @@ function getApi(WeatherURL) {
           } else {
             UV5.setAttribute("class", "moderate")
           }
+
+          if(data.daily[4].weather[0].description === "clear sky"){
+            console.log("CLEAR")
+            current5.textContent = "🌞"
+          } else if (data.daily[4].weather[0].description === "overcast clouds") {
+            current5.textContent = "☁️"
+          } else if (data.daily[4].weather[0].description === "few clouds") {
+            current5.textContent="🌤"
+          }else if (data.daily[4].weather[0].description === "scattered clouds") {
+            current5.textContent = "☁️"
+          }else if (data.daily[4].weather[0].description === "broken clouds") {
+            current5.textContent="🌤"
+          }else if (data.daily[4].weather[0].description === "shower rain") {
+            current5.textContent="🌧"
+          }else if (data.daily[4].weather[0].description === "rain") {
+            current5.textContent="🌧"
+          }else if (data.daily[4].weather[0].description === "thunderstorm") {
+            current5.textContent="⛈"
+          }else if (data.daily[4].weather[0].description === "snow"){
+            current5.textContent="🌨"
+          }else {
+            current5.textContent="🌫"
+          };
 
 
 
