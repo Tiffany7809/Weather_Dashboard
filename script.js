@@ -78,7 +78,7 @@ function getApi(WeatherURL) {
         UvEl.textContent="UV Index:" + " " + data.current.uvi;
         humidityEl.textContent="Humidity" + " " + data.current.humidity;
 
-
+        
 
         function Forcast(){
           
@@ -394,18 +394,9 @@ function getApi(WeatherURL) {
           }else {
             current5.textContent="🌫"
           };
-
-
-
-       
-
         }
-
-
-  
           Forcast()
       });
-      
   }
  
   getApi(WeatherURL)
