@@ -72,7 +72,7 @@ function getApi(WeatherURL) {
         console.log(data.current.wind_speed)
 
         cityEl.textContent=data.timezone;
-        Today.textContent = moment().format("MM Do, YYYY")
+        Today.textContent = moment().format("(M/D/YY)")
         windEl.textContent="Wind Speed:" + " " + data.current.wind_speed;
         tempEl.textContent="Temp:" + " " + data.current.temp + "°" + "F";
         UvEl.textContent="UV Index:" + " " + data.current.uvi;
@@ -81,7 +81,8 @@ function getApi(WeatherURL) {
 
 
         function Forcast(){
-
+          
+          //setting UVI color
           if (data.current.uvi < "2"){
             console.log("safe");
             UvEl.setAttribute("class", "safe")
@@ -94,6 +95,7 @@ function getApi(WeatherURL) {
             UvEl.setAttribute("class", "moderate")
           }
 
+           // setting weather emojis
           if(data.current.weather[0].description === "clear sky"){
             console.log("CLEAR")
             imageEl.textContent = "🌞"
@@ -127,7 +129,7 @@ function getApi(WeatherURL) {
           Humidity1=document.createElement("p");
 
 
-          forcast1.textContent=moment().add(1, "days").format("MM Do, YYYY");
+          forcast1.textContent=moment().add(1, "days").format("(M/D/YY)");
           Wind1.textContent="Wind Speed:" + " " + data.daily[0].wind_speed;
           Temp1.textContent="Temp:" + " " + data.daily[0].temp.day + "°" + "F";
           UV1.textContent="UV Index:" + " " + data.daily[0].uvi;
@@ -140,6 +142,7 @@ function getApi(WeatherURL) {
           Day1.append(UV1)
           Day1.append(Humidity1)
 
+          //setting UVI color
           if (data.daily[0].uvi < "2"){
             UV1.setAttribute("class", "safe")
           } else if ( data.daily[0].uvi >= "8"){
@@ -148,7 +151,7 @@ function getApi(WeatherURL) {
             UV1.setAttribute("class", "moderate")
           }
 
-
+          // setting weather emojis
           if(data.daily[0].weather[0].description === "clear sky"){
             console.log("CLEAR")
             current1.textContent = "🌞"
@@ -180,7 +183,7 @@ function getApi(WeatherURL) {
           UV2=document.createElement("p");
           Humidity2=document.createElement("p");
 
-          forcast2.textContent=moment().add(2, "days").format("MM Do, YYYY");
+          forcast2.textContent=moment().add(2, "days").format("(M/D/YY)");
           Wind2.textContent="Wind Speed:" + " " + data.daily[1].wind_speed;
           Temp2.textContent="Temp:" + " " + data.daily[1].temp.day + "°" + "F";
           UV2.textContent="UV Index:" + " " + data.daily[1].uvi;
@@ -193,6 +196,7 @@ function getApi(WeatherURL) {
           Day2.append(UV2)
           Day2.append(Humidity2)
 
+          //setting UVI color
           if (data.daily[1].uvi < "2"){
             UV2.setAttribute("class", "safe")
           } else if ( data.daily[1].uvi >= "8"){
@@ -201,6 +205,7 @@ function getApi(WeatherURL) {
             UV2.setAttribute("class", "moderate")
           }
 
+           // setting weather emojis
           if(data.daily[1].weather[0].description === "clear sky"){
             console.log("CLEAR")
             current2.textContent = "🌞"
@@ -232,7 +237,7 @@ function getApi(WeatherURL) {
           UV3=document.createElement("p");
           Humidity3=document.createElement("p");
 
-          forcast3.textContent=moment().add(3, "days").format("MM Do, YYYY");
+          forcast3.textContent=moment().add(3, "days").format("(M/D/YY)");
           Wind3.textContent="Wind Speed:" + " " + data.daily[2].wind_speed;
           Temp3.textContent="Temp:" + " " + data.daily[2].temp.day + "°" + "F";
           UV3.textContent="UV Index:" + " " + data.daily[2].uvi;
@@ -245,6 +250,7 @@ function getApi(WeatherURL) {
           Day3.append(UV3)
           Day3.append(Humidity3)
 
+          //setting UVI color
           if (data.daily[2].uvi < "2"){
             UV3.setAttribute("class", "safe")
           } else if ( data.daily[2].uvi >= "8"){
@@ -253,6 +259,8 @@ function getApi(WeatherURL) {
             UV3.setAttribute("class", "moderate")
           }
 
+
+           // setting weather emojis
           if(data.daily[2].weather[0].description === "clear sky"){
             console.log("CLEAR")
             current3.textContent = "🌞"
@@ -284,7 +292,7 @@ function getApi(WeatherURL) {
           UV4=document.createElement("p");
           Humidity4=document.createElement("p");
 
-          forcast4.textContent=moment().add(4, "days").format("MM Do, YYYY");
+          forcast4.textContent=moment().add(4, "days").format("(M/D/YY)");
           Wind4.textContent="Wind Speed:" + " " + data.daily[3].wind_speed;
           Temp4.textContent="Temp:" + " " + data.daily[3].temp.day + "°" + "F";
           UV4.textContent="UV Index:" + " " + data.daily[3].uvi;
@@ -297,6 +305,7 @@ function getApi(WeatherURL) {
           Day4.append(UV4)
           Day4.append(Humidity4)
 
+          //setting UVI color
           if (data.daily[3].uvi < "2"){
             UV4.setAttribute("class", "safe")
           } else if ( data.daily[3].uvi >= "8"){
@@ -305,6 +314,8 @@ function getApi(WeatherURL) {
             UV4.setAttribute("class", "moderate")
           }
 
+
+           // setting weather emojis
           if(data.daily[3].weather[0].description === "clear sky"){
             console.log("CLEAR")
             current4.textContent = "🌞"
@@ -337,7 +348,7 @@ function getApi(WeatherURL) {
           UV5=document.createElement("p");
           Humidity5=document.createElement("p");
 
-          forcast5.textContent=moment().add(5, "days").format("MM Do, YYYY");
+          forcast5.textContent=moment().add(5, "days").format("(M/D/YY)");
           Wind5.textContent="Wind Speed:" + " " + data.daily[4].wind_speed;
           Temp5.textContent="Temp:" + " " + data.daily[4].temp.day + "°" + "F";
           UV5.textContent="UV Index:" + " " + data.daily[4].uvi;
@@ -350,7 +361,7 @@ function getApi(WeatherURL) {
           Day5.append(UV5)
           Day5.append(Humidity5)
 
-          
+          //setting UVI color
           if (data.daily[4].uvi < "2"){
             UV5.setAttribute("class", "safe")
           } else if ( data.daily[4].uvi >= "8"){
@@ -359,6 +370,8 @@ function getApi(WeatherURL) {
             UV5.setAttribute("class", "moderate")
           }
 
+
+          // setting weather emojis
           if(data.daily[4].weather[0].description === "clear sky"){
             console.log("CLEAR")
             current5.textContent = "🌞"

@@ -14,8 +14,12 @@ h1 {
 
 .Forcast {
     text-align: left;
-    background-color: black;
+    background-color: rgb(28, 66, 122);
     color: white;
+}
+
+.ForcastCurrent {
+    background-color: rgb(207, 207, 207);
 }
 
 #Favorites {
