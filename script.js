@@ -42,7 +42,7 @@ submitSearchBtn.addEventListener("click",function(){
 
   //function to call city from search bard
       function currentCondition(qparam) {
-
+        var qparam = inputEl.value;
      
       var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${qparam}&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f`;
 
