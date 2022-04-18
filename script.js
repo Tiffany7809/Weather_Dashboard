@@ -51,7 +51,7 @@ submitSearchBtn.addEventListener("click",function(){
             method: "GET"
             }).then(function(cityWeatherResponse) {
             console.log(cityWeatherResponse);
-            console.log(city);
+            console.log(cityURL);
             });
           }
        
