@@ -50,8 +50,11 @@ submitSearchBtn.addEventListener("click",function(){
             url: cityURL,
             method: "GET"
             }).then(function(cityWeatherResponse) {
+
             console.log(cityWeatherResponse);
             console.log(cityURL);
+            // console.log(data)
+            return cityWeatherResponse.json;
             });
           }
        
