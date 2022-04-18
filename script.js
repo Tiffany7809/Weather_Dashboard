@@ -19,9 +19,11 @@ localStorage.setItem("favoritesList", favoritesEl);
 
 
 
+
 submitSearchBtn.addEventListener("click",function(){
-  
-  var cityURL = 'https://api.openweathermap.org/data/2.5/weather?q=seattle&appid=fac969b25d4eb179bf7de6d01c2e017f'
+  event.preventDefault();
+ 
+  // var cityURL = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fac969b25d4eb179bf7de6d01c2e017f'
 
   //getting user input
   var qparam = inputEl.value;
@@ -36,23 +38,39 @@ submitSearchBtn.addEventListener("click",function(){
   
   favoritesEl.append(RecentSearch);
 
-  getApi(cityURL)
+  console.log(qparam);
+
+  //function to call city from search bard
+      function currentCondition(qparam) {
+
+     
+      var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${qparam}&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f`;
+
+        fetch({
+            url: cityURL,
+            method: "GET"
+            }).then(function(cityWeatherResponse) {
+            console.log(cityWeatherResponse);
+            console.log(city);
+            });
+          }
+       
+currentCondition();
+
 })
 
-function getApi(cityURL) {
- 
-  fetch(cityURL , {
-    method: 'POST', 
-  })
 
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data)
 
-    });
-};
+
+
+
+
+
+
+
+
+
+
 
 
 
