@@ -22,17 +22,12 @@ localStorage.setItem("favoritesList", favoritesEl);
 
 submitSearchBtn.addEventListener("click",function(){
   event.preventDefault();
- 
-  // var cityURL = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fac969b25d4eb179bf7de6d01c2e017f'
 
   //getting user input
   var qparam = inputEl.value;
   inputEl.value= " ";
-  
-
   //saving user input to local storage
   localStorage.setItem("Recent" , qparam);
-
   //appening to favorites list
   var RecentSearch=localStorage.getItem('Recent');
   
@@ -40,27 +35,42 @@ submitSearchBtn.addEventListener("click",function(){
 
   console.log(qparam);
 
+})
+
   //function to call city from search bard
-      function currentCondition(qparam) {
-        var qparam = inputEl.value;
-     
-      var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${qparam}&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f`;
+      function currentCondition() {
+      var currentCity;
+      var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${inputEl.value}&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f`;
 
-        fetch({
-            url: cityURL,
-            method: "GET"
-            }).then(function(cityWeatherResponse) {
-
-            console.log(cityWeatherResponse);
-            console.log(cityURL);
-            // console.log(data)
-            return cityWeatherResponse.json;
-            });
+        fetch(cityURL)
+        .then(function(response) {
+          if (response.status !== 200) {
+            return response.json();
+          } else {
+            console.log("error!")
           }
+        })
+        .then (function(data) {
+          var newSearch = {
+            city: currentCity,
+            lat: data.coord.lat,
+            lon:data.coord.lon
+          }
+
+          console.log(cityURL);
+          console.log(data);
+
+          return newSearch;
+        }) 
+        .then(function (data){
+          getApi(data);
+        })
+        return;
+      }
        
 currentCondition();
 
-})
+
 
 
 
@@ -78,8 +88,10 @@ currentCondition();
 
 
 //request data from oneweather API
-var WeatherURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=47.6062&lon=-122.3321&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f'
-function getApi(WeatherURL) {
+
+function getApi(data) {
+
+  var WeatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f`
     fetch(WeatherURL)
       .then(function (response) {
         console.log(response.status);
@@ -420,7 +432,7 @@ function getApi(WeatherURL) {
       });
   }
  
-  getApi(WeatherURL)
+  // getApi(WeatherURL)
   
 
 
