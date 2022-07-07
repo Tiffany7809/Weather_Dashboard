@@ -1,440 +1,202 @@
-favoritesEl=document.getElementById("Favorites");
-inputEl=document.getElementById("citySearch");
-currentDayEl=document.getElementById("CurrentDaysWeather");
-cityEl=document.getElementById("cityName");
-tempEl=document.getElementById("temperature");
-humidityEl=document.getElementById("humidity");
-windEl=document.getElementById("windSpeed");
-UvEl=document.getElementById("uvIndex");
-submitSearchBtn=document.getElementById("submitBtn");
-Today=document.getElementById("currentDate");
-Day1=document.getElementById("Day1");
-Day2=document.getElementById("Day2");
-Day3=document.getElementById("Day3");
-Day4=document.getElementById("Day4");
-Day5=document.getElementById("Day5");
-imageEl=document.getElementById("current")
 
-localStorage.setItem("favoritesList", favoritesEl);
-
-
-
-
-submitSearchBtn.addEventListener("click",function(){
-  event.preventDefault();
-
-  //getting user input
-  var qparam = inputEl.value;
-  inputEl.value= " ";
-  //saving user input to local storage
-  localStorage.setItem("Recent" , qparam);
-  //appening to favorites list
-  var RecentSearch=localStorage.getItem('Recent');
-  
-  favoritesEl.append(RecentSearch);
-
-  console.log(qparam);
-
-})
-
-  //function to call city from search bard
-      function currentCondition() {
-      var currentCity;
-      var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${inputEl.value}&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f`;
-
-        fetch(cityURL)
-        .then(function(response) {
-          if (response.status !== 200) {
-            return response.json();
-          } else {
-            console.log("error!")
-          }
-        })
-        .then (function(data) {
-          var newSearch = {
-            city: currentCity,
-            lat: data.coord.lat,
-            lon:data.coord.lon
-          }
-
-          console.log(cityURL);
-          console.log(data);
-
-          return newSearch;
-        }) 
-        .then(function (data){
-          getApi(data);
-        })
-        return;
-      }
-       
-currentCondition();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//request data from oneweather API
-
-function getApi(data) {
-
-  var WeatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&units=imperial&appid=fac969b25d4eb179bf7de6d01c2e017f`
-    fetch(WeatherURL)
-      .then(function (response) {
-        console.log(response.status);
-        if (response.status !== 200) {
-          console.log(response.status);
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data)
-        console.log(data.current.wind_speed)
-
-        cityEl.textContent=data.timezone;
-        Today.textContent = moment().format("(M/D/YY)")
-        windEl.textContent="Wind Speed:" + " " + data.current.wind_speed + "MPH";
-        tempEl.textContent="Temp:" + " " + data.current.temp + "°" + "F";
-        UvEl.textContent="UV Index:" + " " + data.current.uvi;
-        humidityEl.textContent="Humidity" + " " + data.current.humidity + "%";
-
-        
-
-        function Forcast(){
-          
-          //setting UVI color
-          if (data.current.uvi < "2"){
-            console.log("safe");
-            UvEl.setAttribute("class", "safe")
-  
-          }else if (data.current.uvi >= "8"){
-            console.log("DANGER");
-            UvEl.setAttribute("class", "danger")
-          }else {
-            console.log("moderate");
-            UvEl.setAttribute("class", "moderate")
-          }
-
-           // setting weather emojis
-          if(data.current.weather[0].description === "clear sky"){
-            console.log("CLEAR")
-            imageEl.textContent = "🌞"
-          } else if (data.current.weather[0].description === "overcast clouds") {
-            imageEl.textContent = "☁️"
-          } else if (data.current.weather[0].description === "few clouds") {
-            imageEl.textContent="🌤"
-          }else if (data.current.weather[0].description === "scattered clouds") {
-            imageEl.textContent = "☁️"
-          }else if (data.current.weather[0].description === "broken clouds") {
-            imageEl.textContent="🌤"
-          }else if (data.current.weather[0].description === "shower rain") {
-            imageEl.textContent="🌧"
-          }else if (data.current.weather[0].description === "rain") {
-            imageEl.textContent="🌧"
-          }else if (data.current.weather[0].description === "thunderstorm") {
-            imageEl.textContent="⛈"
-          }else if (data.current.weather[0].description === "snow"){
-            imageEl.textContent="🌨"
-          }else {
-            imageEl.textContent="🌫"
-          };
-
-
-          //day 1 forcast
-          current1=document.createElement("p");
-          forcast1=document.createElement("p");
-          Wind1=document.createElement("p");
-          Temp1=document.createElement("p");
-          UV1=document.createElement("p");
-          Humidity1=document.createElement("p");
-
-
-          forcast1.textContent=moment().add(1, "days").format("(M/D/YY)");
-          Wind1.textContent="Wind Speed:" + " " + data.daily[0].wind_speed + "MPH";
-          Temp1.textContent="Temp:" + " " + data.daily[0].temp.day + "°" + "F";
-          UV1.textContent="UV Index:" + " " + data.daily[0].uvi;
-          Humidity1.textContent="Humidity" + " " + data.daily[0].humidity + "%";
-
-          Day1.append(forcast1)
-          Day1.append(current1)
-          Day1.append(Wind1)
-          Day1.append(Temp1)
-          Day1.append(UV1)
-          Day1.append(Humidity1)
-
-          //setting UVI color
-          if (data.daily[0].uvi < "2"){
-            UV1.setAttribute("class", "safe")
-          } else if ( data.daily[0].uvi >= "8"){
-            UV1.setAttribute("class", "danger")
-          } else {
-            UV1.setAttribute("class", "moderate")
-          }
-
-          // setting weather emojis
-          if(data.daily[0].weather[0].description === "clear sky"){
-            console.log("CLEAR")
-            current1.textContent = "🌞"
-          } else if (data.daily[0].weather[0].description === "overcast clouds") {
-            current1.textContent = "☁️"
-          } else if (data.daily[0].weather[0].description === "few clouds") {
-            current1.textContent="🌤"
-          }else if (data.daily[0].weather[0].description === "scattered clouds") {
-            current1.textContent = "☁️"
-          }else if (data.daily[0].weather[0].description === "broken clouds") {
-            current1.textContent="🌤"
-          }else if (data.daily[0].weather[0].description === "shower rain") {
-            current1.textContent="🌧"
-          }else if (data.daily[0].weather[0].description === "rain") {
-            current1.textContent="🌧"
-          }else if (data.daily[0].weather[0].description === "thunderstorm") {
-            current1.textContent="⛈"
-          }else if (data.daily[0].weather[0].description === "snow"){
-            current1.textContent="🌨"
-          }else {
-            current1.textContent="🌫"
-          };
-
-          //day 2 forcast
-          current2=document.createElement("p");
-          forcast2=document.createElement("p");
-          Wind2=document.createElement("p");
-          Temp2=document.createElement("p");
-          UV2=document.createElement("p");
-          Humidity2=document.createElement("p");
-
-          forcast2.textContent=moment().add(2, "days").format("(M/D/YY)");
-          Wind2.textContent="Wind Speed:" + " " + data.daily[1].wind_speed + "MPH";
-          Temp2.textContent="Temp:" + " " + data.daily[1].temp.day + "°" + "F";
-          UV2.textContent="UV Index:" + " " + data.daily[1].uvi;
-          Humidity2.textContent="Humidity" + " " + data.daily[1].humidity + "%";
-
-          Day2.append(forcast2)
-          Day2.append(current2)
-          Day2.append(Wind2)
-          Day2.append(Temp2)
-          Day2.append(UV2)
-          Day2.append(Humidity2)
-
-          //setting UVI color
-          if (data.daily[1].uvi < "2"){
-            UV2.setAttribute("class", "safe")
-          } else if ( data.daily[1].uvi >= "8"){
-            UV2.setAttribute("class", "danger")
-          } else {
-            UV2.setAttribute("class", "moderate")
-          }
-
-           // setting weather emojis
-          if(data.daily[1].weather[0].description === "clear sky"){
-            console.log("CLEAR")
-            current2.textContent = "🌞"
-          } else if (data.daily[1].weather[0].description === "overcast clouds") {
-            current2.textContent = "☁️"
-          } else if (data.daily[1].weather[0].description === "few clouds") {
-            current2.textContent="🌤"
-          }else if (data.daily[1].weather[0].description === "scattered clouds") {
-            current2.textContent = "☁️"
-          }else if (data.daily[1].weather[0].description === "broken clouds") {
-            current2.textContent="🌤"
-          }else if (data.daily[1].weather[0].description === "shower rain") {
-            current2.textContent="🌧"
-          }else if (data.daily[1].weather[0].description === "rain") {
-            current2.textContent="🌧"
-          }else if (data.daily[1].weather[0].description === "thunderstorm") {
-            current2.textContent="⛈"
-          }else if (data.daily[1].weather[0].description === "snow"){
-            current2.textContent="🌨"
-          }else {
-            current2.textContent="🌫"
-          };
-
-          //day 3 forcast
-          current3=document.createElement("p");
-          forcast3=document.createElement("p");
-          Wind3=document.createElement("p");
-          Temp3=document.createElement("p");
-          UV3=document.createElement("p");
-          Humidity3=document.createElement("p");
-
-          forcast3.textContent=moment().add(3, "days").format("(M/D/YY)");
-          Wind3.textContent="Wind Speed:" + " " + data.daily[2].wind_speed + "MPH";
-          Temp3.textContent="Temp:" + " " + data.daily[2].temp.day + "°" + "F";
-          UV3.textContent="UV Index:" + " " + data.daily[2].uvi;
-          Humidity3.textContent="Humidity" + " " + data.daily[2].humidity + "%";
-
-          Day3.append(forcast3)
-          Day3.append(current3)
-          Day3.append(Wind3)
-          Day3.append(Temp3)
-          Day3.append(UV3)
-          Day3.append(Humidity3)
-
-          //setting UVI color
-          if (data.daily[2].uvi < "2"){
-            UV3.setAttribute("class", "safe")
-          } else if ( data.daily[2].uvi >= "8"){
-            UV3.setAttribute("class", "danger")
-          } else {
-            UV3.setAttribute("class", "moderate")
-          }
-
-
-           // setting weather emojis
-          if(data.daily[2].weather[0].description === "clear sky"){
-            console.log("CLEAR")
-            current3.textContent = "🌞"
-          } else if (data.daily[2].weather[0].description === "overcast clouds") {
-            current3.textContent = "☁️"
-          } else if (data.daily[2].weather[0].description === "few clouds") {
-            current3.textContent="🌤"
-          }else if (data.daily[2].weather[0].description === "scattered clouds") {
-            current3.textContent = "☁️"
-          }else if (data.daily[2].weather[0].description === "broken clouds") {
-            current3.textContent="🌤"
-          }else if (data.daily[2].weather[0].description === "shower rain") {
-            current3.textContent="🌧"
-          }else if (data.daily[2].weather[0].description === "rain") {
-            current3.textContent="🌧"
-          }else if (data.daily[2].weather[0].description === "thunderstorm") {
-            current3.textContent="⛈"
-          }else if (data.daily[2].weather[0].description === "snow"){
-            current3.textContent="🌨"
-          }else {
-            current3.textContent="🌫"
-          };
-
-          //day 4 forcast
-          current4=document.createElement("p");
-          forcast4=document.createElement("p");
-          Wind4=document.createElement("p");
-          Temp4=document.createElement("p");
-          UV4=document.createElement("p");
-          Humidity4=document.createElement("p");
-
-          forcast4.textContent=moment().add(4, "days").format("(M/D/YY)");
-          Wind4.textContent="Wind Speed:" + " " + data.daily[3].wind_speed + "MPH";
-          Temp4.textContent="Temp:" + " " + data.daily[3].temp.day + "°" + "F";
-          UV4.textContent="UV Index:" + " " + data.daily[3].uvi;
-          Humidity4.textContent="Humidity" + " " + data.daily[3].humidity + "%";
-
-          Day4.append(forcast4)
-          Day4.append(current4)
-          Day4.append(Wind4)
-          Day4.append(Temp4)
-          Day4.append(UV4)
-          Day4.append(Humidity4)
-
-          //setting UVI color
-          if (data.daily[3].uvi < "2"){
-            UV4.setAttribute("class", "safe")
-          } else if ( data.daily[3].uvi >= "8"){
-            UV4.setAttribute("class", "danger")
-          } else {
-            UV4.setAttribute("class", "moderate")
-          }
-
-
-           // setting weather emojis
-          if(data.daily[3].weather[0].description === "clear sky"){
-            console.log("CLEAR")
-            current4.textContent = "🌞"
-          } else if (data.daily[3].weather[0].description === "overcast clouds") {
-            current4.textContent = "☁️"
-          } else if (data.daily[3].weather[0].description === "few clouds") {
-            current4.textContent="🌤"
-          }else if (data.daily[3].weather[0].description === "scattered clouds") {
-            current4.textContent = "☁️"
-          }else if (data.daily[3].weather[0].description === "broken clouds") {
-            current4.textContent="🌤"
-          }else if (data.daily[3].weather[0].description === "shower rain") {
-            current4.textContent="🌧"
-          }else if (data.daily[3].weather[0].description === "rain") {
-            current4.textContent="🌧"
-          }else if (data.daily[3].weather[0].description === "thunderstorm") {
-            current4.textContent="⛈"
-          }else if (data.daily[3].weather[0].description === "snow"){
-            current4.textContent="🌨"
-          }else {
-            current4.textContent="🌫"
-          };
-
-          //day 5 forcast
-
-          forcast5=document.createElement("p");
-          current5=document.createElement("p");
-          Wind5=document.createElement("p");
-          Temp5=document.createElement("p");
-          UV5=document.createElement("p");
-          Humidity5=document.createElement("p");
-
-          forcast5.textContent=moment().add(5, "days").format("(M/D/YY)");
-          Wind5.textContent="Wind Speed:" + " " + data.daily[4].wind_speed + "MPH";
-          Temp5.textContent="Temp:" + " " + data.daily[4].temp.day + "°" + "F";
-          UV5.textContent="UV Index:" + " " + data.daily[4].uvi;
-          Humidity5.textContent="Humidity" + " " + data.daily[4].humidity + "%";
-
-          Day5.append(forcast5)
-          Day5.append(current5)
-          Day5.append(Wind5)
-          Day5.append(Temp5)
-          Day5.append(UV5)
-          Day5.append(Humidity5)
-
-          //setting UVI color
-          if (data.daily[4].uvi < "2"){
-            UV5.setAttribute("class", "safe")
-          } else if ( data.daily[4].uvi >= "8"){
-            UV5.setAttribute("class", "danger")
-          } else {
-            UV5.setAttribute("class", "moderate")
-          }
-
-
-          // setting weather emojis
-          if(data.daily[4].weather[0].description === "clear sky"){
-            console.log("CLEAR")
-            current5.textContent = "🌞"
-          } else if (data.daily[4].weather[0].description === "overcast clouds") {
-            current5.textContent = "☁️"
-          } else if (data.daily[4].weather[0].description === "few clouds") {
-            current5.textContent="🌤"
-          }else if (data.daily[4].weather[0].description === "scattered clouds") {
-            current5.textContent = "☁️"
-          }else if (data.daily[4].weather[0].description === "broken clouds") {
-            current5.textContent="🌤"
-          }else if (data.daily[4].weather[0].description === "shower rain") {
-            current5.textContent="🌧"
-          }else if (data.daily[4].weather[0].description === "rain") {
-            current5.textContent="🌧"
-          }else if (data.daily[4].weather[0].description === "thunderstorm") {
-            current5.textContent="⛈"
-          }else if (data.daily[4].weather[0].description === "snow"){
-            current5.textContent="🌨"
-          }else {
-            current5.textContent="🌫"
-          };
-        }
-          Forcast()
-      });
-  }
+var cityFormEl=document.querySelector("#cityForm");
+var cityInputEl=document.querySelector("#cityInput");
+var weatherContainerEl=document.querySelector("#todaysWeather");
+var citySearchInputEl = document.querySelector("#cityQuerey");
+var forecastTitle = document.querySelector("#weekForecast");
+var forecastContainerEl = document.querySelector("#forecastSection");
+var pastSearchButtonEl = document.querySelector("#Favorites");
+
+var cities = [];
+
+var formSumbitHandler = function(e){
+    e.preventDefault();
+    var city = cityInputEl.value.trim();
+    if(city){
+        getCityWeather(city);
+        fiveDay(city);
+        cities.unshift({city});
+        cityInputEl.value = "";
+    } else{
+        alert("Please enter a City");
+    }
+    saveSearch();
+    favoritesSearch(city);
+}
+
+var saveSearch = function(){
+    localStorage.setItem("cities", JSON.stringify(cities));
+};
+
+var getCityWeather = function(city){
+    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+            displayWeather(data, city);
+        });
+    });
+};
+
+var displayWeather = function(weather, searchCity){
+   //clearing the search bar
+   weatherContainerEl.textContent= "";  
+   citySearchInputEl.textContent=searchCity;
+
+    //setting up access to the weather icons
+    const Icon = document.createElement("img")
+    Icon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+    citySearchInputEl.appendChild(Icon);
  
-  // getApi(WeatherURL)
+   //showing the date
+   const todaysDate = document.createElement("div")
+   //using moment to show date and time
+   todaysDate.textContent=" (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
+   citySearchInputEl.appendChild(todaysDate);
+
+   //element to hold temperature data
+   const tempEl = document.createElement("div");
+   tempEl.textContent = "Temperature: " + weather.main.temp + " °F";
+   tempEl.classList = "list-group-item"
   
+   //create a span element to hold Humidity data
+   const humidityEl = document.createElement("div");
+   humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
+   humidityEl.classList = "list-group-item"
+
+   //create a span element to hold Wind data
+   const windSpeedEl = document.createElement("div");
+   windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
+   windSpeedEl.classList = "list-group-item"
+
+   //append to container
+   weatherContainerEl.appendChild(tempEl);
+   weatherContainerEl.appendChild(humidityEl);
+   weatherContainerEl.appendChild(windSpeedEl);
+
+   const lat = weather.coord.lat;
+   const lon = weather.coord.lon;
+   uvi(lat,lon)
+}
+
+//function to get the uvi from the database
+var uvi = function(lat,lon){
+    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+            displayUvi(data)
+        });
+    });
+}
+ 
+//function to display the uvi retrieved from the database
+var displayUvi = function(index){
+    var uvIndexEl = document.createElement("div");
+    uvIndexEl.textContent = "UV Index: "
+    uvIndexEl.classList = "list-group-item"
+
+    uvIndexValue = document.createElement("span")
+    uvIndexValue.textContent = index.value
+
+    if(index.value <=2){
+        uvIndexValue.classList = "favorable"
+    }else if(index.value >2 && index.value<=8){
+        uvIndexValue.classList = "moderate "
+    }
+    else if(index.value >8){
+        uvIndexValue.classList = "severe"
+    };
+
+    uvIndexEl.appendChild(uvIndexValue);
+
+    weatherContainerEl.appendChild(uvIndexEl);
+}
+
+//retrieve five day forcast from the database
+var fiveDay = function(city){
+    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
+
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+           displayFiveDay(data);
+        });
+    });
+};
+
+var displayFiveDay = function(weather){
+    forecastContainerEl.textContent = ""
+    forecastTitle.textContent = "5-Day Forecast:";
+
+    var forecast = weather.list;
+        for(var i=5; i < forecast.length; i=i+8){
+       var dailyForecast = forecast[i];
+        
+       
+       var forecastEl=document.createElement("div");
+       forecastEl.classList = "card bg-primary text-light m-2";
+
+       //create date element
+       var forecastDate = document.createElement("h5")
+       forecastDate.textContent= moment.unix(dailyForecast.dt).format("MMM D, YYYY");
+       forecastDate.classList = "card-header text-center"
+       forecastEl.appendChild(forecastDate);
+
+       
+       //create an image element
+       var weatherIcon = document.createElement("img")
+       weatherIcon.classList = "card-body text-center";
+       weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
+
+       //append to forecast card
+       forecastEl.appendChild(weatherIcon);
+       
+       //create temperature span
+       var forecastTempEl=document.createElement("span");
+       forecastTempEl.classList = "card-body text-center";
+       forecastTempEl.textContent = dailyForecast.main.temp + " °F";
+
+        //append to forecast card
+        forecastEl.appendChild(forecastTempEl);
+
+       var forecastHumEl=document.createElement("span");
+       forecastHumEl.classList = "card-body text-center";
+       forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
+
+       //append to forecast card
+       forecastEl.appendChild(forecastHumEl);
+
+       //append to five day container
+        forecastContainerEl.appendChild(forecastEl);
+    }
+
+}
+
+//function for displaying the past searches as a button
+var favoritesSearch = function(pastSearch){
+
+    pastSearchEl = document.createElement("button");
+    pastSearchEl.textContent = pastSearch;
+    pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
+    pastSearchEl.setAttribute("data-city",pastSearch)
+    pastSearchEl.setAttribute("type", "submit");
+
+    pastSearchButtonEl.prepend(pastSearchEl);
+}
 
 
+var pastFavoritesHandler = function(event){
+    var city = event.target.getAttribute("data-city")
+    if(city){
+        getCityWeather(city);
+        fiveDay(city);
+    }
+}
 
-
+cityFormEl.addEventListener("submit", formSumbitHandler);
+pastSearchButtonEl.addEventListener("click", pastFavoritesHandler);

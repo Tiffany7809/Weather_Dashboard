@@ -11,112 +11,63 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
         crossorigin="anonymous">
 
-    
-
     <!-- linking font awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Teko:wght@300;400&display=swap" rel="stylesheet">
 
-
-
     <title>Weather Dashboard</title>
+
 </head>
 <body>
     <!-- Header -->
     <div class="container-fluid">
         <header>Weather Dashboard</header>
     </div>
+
     <div class="container">
         <div class="row">
+             <!-- Search bar on left side -->
             <div class="col col-md-3 p-3 border bg-light">
-                <!-- Search bar on left side -->
-                <h1>Search For a City:</h1>
                 <!-- Input Form -->
-                <form method="GET">
-                <div class="form-floating mb-3">
-                    <input type="city" class="form-control" id="citySearch" placeholder="City" name="citySearch">
+                <h1>Search For a City:</h1>
+                <form id = "cityForm">
+                    <input type="text" class="form-control" id="cityInput" placeholder="City" class = "form-input">
                     <label for="floatingInput"></label>
-                </div>
                 <div class="d-grid gap-2 col-12 mx-auto">
-                    <button class="btn btn-primary" type="button" id="submitBtn">Search</button>
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </div>
              </form>
                 <hr>
 
                 <!-- Favorites List -->
-            <div class="col-md-3" id="Favorites"> </div>
+            <div class="col-md-3" class = "past-search border" id="Favorites"> </div>
                 
         </div>
 
-            <div class="col col-md-9">
-                <!-- Current Day report -->
-                <div class="container-fluid p-3 border ForcastCurrent">  
-                    <div class="container-fluid" id="CurrentDaysWeather">
-                        <div class="card-body">
-                            <h3 id="cityName" class="city-name align-middle"></h3>
-                            <p id ="currentDate"></p>
-                            <p id="current"></p>
-                            <p id="temperature"></p>
-                            <p id="humidity"></p>
-                            <p id="windSpeed"></p>
-                            <p id="uvIndex"></p>
-                        </div>
-                    </div>
-                </div>
-
-                    <br>
-
-                 <!-- Next 5 days Report -->
-                <div class="container-fluid p-3 border bg-light">
-                    <h1>5-Day Forcast:</h1>
-                    <div class="container px-4">
-                        <div class="row gx-5">
-                          <div class="col">
-                            <div class="p-3 border Forcast" id="Day1"></div>
-                          </div>
-                          <div class="col">
-                            <div class="p-3 border Forcast" id="Day2"></div>
-                          </div>
-                          <div class="col">
-                            <div class="p-3 border Forcast" id="Day3"></div>
-                          </div>
-                          <div class="col">
-                            <div class="p-3 border Forcast" id="Day4"></div>
-                          </div>
-                          <div class="col">
-                            <div class="p-3 border Forcast" id="Day5"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
+        <div class="col-12 col-md-9">
+            <div class = "row border selected-">
+                <div class = "col-12">
+                    <h2 id="cityQuerey"></h2>
+                    <div id = "todaysWeather" class = "list-group"></div>
+                </div>  
             </div>
+            <div class = "row border">
+                    <h2 class= "col-12" id = "weekForecast"></h2>
+                    <div class = "d-flex" id = "forecastSection"></div>
+            </div>  
         </div>
     </div>
 
  
-   
-
-    
-
-
-
-
-
-
-
-    
-
     <!-- linking JQuerey -->
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
     <!-- linking moment JS  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- linking JS file -->
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
     
 </body>
 
